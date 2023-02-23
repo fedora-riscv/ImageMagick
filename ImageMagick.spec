@@ -1,3 +1,5 @@
+%bcond_without tests
+
 # Disable automatic .la file removal
 %global __brp_remove_la_files %nil
 
@@ -247,6 +249,8 @@ ln -sr %{buildroot}%{_includedir}/%{name}-7/MagickCore %{buildroot}%{_includedir
 ln -sr %{buildroot}%{_includedir}/%{name}-7/MagickWand %{buildroot}%{_includedir}/%{name}-7/wand
 
 cp -a www/source %{buildroot}%{_datadir}/doc/%{name}-%{VER}
+# Do NOT remove .la files for codecs
+# https://bugzilla.opensuse.org/show_bug.cgi?id=579798
 # Delete *ONLY* _libdir/*.la files! .la files used internally to handle plugins - BUG#185237!!!
 rm %{buildroot}%{_libdir}/*.la
 
@@ -257,9 +261,6 @@ rm %{buildroot}%{_libdir}/*.la
 find %{buildroot} -name "*.bs" |xargs rm -f
 find %{buildroot} -name ".packlist" |xargs rm -f
 find %{buildroot} -name "perllocal.pod" |xargs rm -f
-
-# Do NOT remove .la files for codecs
-# https://bugzilla.opensuse.org/show_bug.cgi?id=579798
 
 # perlmagick: build files list
 echo "%defattr(-,root,root,-)" > perl-pkg-files
@@ -301,21 +302,25 @@ multilibFileVersions %{buildroot}%{_includedir}/%{name}-7/MagickCore/version.h
 
 
 %check
+%if %{with tests}
 export LD_LIBRARY_PATH=%{buildroot}/%{_libdir}
 %make_build check
+%endif
 rm PerlMagick/demo/Generic.ttf
 
 %ldconfig_scriptlets libs
 %ldconfig_scriptlets c++
 
 %files
-%doc README.txt LICENSE NOTICE AUTHORS.txt NEWS.txt
+%doc README.txt NOTICE AUTHORS.txt NEWS.txt
+%license LICENSE
 %{_bindir}/[a-z]*
 %{_mandir}/man[145]/[a-z]*
 %{_mandir}/man1/%{name}.*
 
 %files libs
-%doc LICENSE NOTICE AUTHORS.txt QuickStart.txt
+%doc NOTICE AUTHORS.txt QuickStart.txt
+%license LICENSE
 %{_libdir}/libMagickCore-7.Q16HDRI.so.%{libsover}{,.*}
 %{_libdir}/libMagickWand-7.Q16HDRI.so.%{libsover}{,.*}
 %{_libdir}/%{name}-%{VER}
