@@ -13,8 +13,8 @@ Epoch:          1
 %else
 Epoch:          0
 %endif
-Version:        7.1.0.62
-Release:        2%{?dist}
+Version:        7.1.1.4
+Release:        1%{?dist}
 Summary:        An X application for displaying and manipulating images
 
 %global VER %(foo=%{version}; echo ${foo:0:5})
@@ -413,6 +413,10 @@ rm PerlMagick/demo/Generic.ttf
 %doc PerlMagick/demo/ PerlMagick/Changelog PerlMagick/README.txt
 
 %changelog
+* Wed Mar 22 2023 Sérgio Basto <sergio@serjux.com> - 1:7.1.1.4-1
+- Update ImageMagick to 7.1.1.4 (#2176749)
+- Add support to libheif and add html docs
+
 * Mon Mar 13 2023 Mamoru TASAKA <mtasaka@fedoraproject.org> - 1:7.1.0-62-2
 - Backport upstream fix for GetPageGeometry misbehavior (bug 2177631)
 
