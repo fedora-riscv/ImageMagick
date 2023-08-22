@@ -13,8 +13,8 @@ Epoch:          1
 %else
 Epoch:          0
 %endif
-Version:        7.1.1.13
-Release:        2%{?dist}
+Version:        7.1.1.15
+Release:        1%{?dist}
 Summary:        An X application for displaying and manipulating images
 
 %global VER %(foo=%{version}; echo ${foo:0:5})
@@ -413,6 +413,9 @@ rm PerlMagick/demo/Generic.ttf
 %doc PerlMagick/demo/ PerlMagick/Changelog PerlMagick/README.txt
 
 %changelog
+* Tue Aug 22 2023 Sérgio Basto <sergio@serjux.com> - 1:7.1.1.15-1
+- Update ImageMagick to 7.1.1.15 (#2217558)
+
 * Wed Jul 19 2023 Fedora Release Engineering <releng@fedoraproject.org> - 1:7.1.1.13-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_39_Mass_Rebuild
 
