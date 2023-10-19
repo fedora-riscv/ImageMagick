@@ -10,7 +10,7 @@ Epoch:          1
 Epoch:          0
 %endif
 Version:        6.9.12.93
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        An X application for displaying and manipulating images
 
 %global VER %(foo=%{version}; echo ${foo:0:6})
@@ -340,6 +340,9 @@ rm PerlMagick/demo/Generic.ttf
 %doc PerlMagick/demo/ PerlMagick/Changelog PerlMagick/README.txt
 
 %changelog
+* Thu Oct 19 2023 Sérgio Basto <sergio@serjux.com> - 1:6.9.12.93-2
+- Mass rebuild for libRaw
+
 * Tue Aug 22 2023 Sérgio Basto <sergio@serjux.com> - 1:6.9.12.93-1
 - Update ImageMagick to 6.9.12.93
 
