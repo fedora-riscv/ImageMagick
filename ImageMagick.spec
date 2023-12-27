@@ -14,7 +14,7 @@ Epoch:          1
 Epoch:          0
 %endif
 Version:        7.1.1.15
-Release:        1%{?dist}
+Release:        1.rvrebuild0%{?dist}
 Summary:        An X application for displaying and manipulating images
 
 %global VER %(foo=%{version}; echo ${foo:0:5})
